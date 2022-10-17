@@ -2,76 +2,73 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-
-    <!-- displays site properly based on user's device -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <!-- fav icon -->
+    <meta
+      name="description"
+      content="Frontend Mentor | Shortly URL shortening API Challenge"
+    />
     <link
       rel="icon"
       type="image/png"
       sizes="32x32"
       href="./images/favicon-32x32.png"
     />
-
-    <!-- fonts google-fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap"
       rel="stylesheet"
     />
-
-    <!-- icon font-Awesome -->
     <script
       defer
       src="https://kit.fontawesome.com/38f8bca810.js"
       crossorigin="anonymous"
     ></script>
-    <!-- script -->
     <script defer type="module" src="./script.min.js"></script>
-
-    <!-- style CSS -->
     <link rel="stylesheet" href="./style.min.css" />
-
     <title>Frontend Mentor | Shortly URL shortening API Challenge</title>
   </head>
   <body>
-    <!-- Header -->
     <header class="header" id="header">
-      <!-- navbar -->
       <nav class="wrapper navbar">
-        <!-- logo -->
         <div class="navbar_logo">
-          <a href="/"><img src="./images/logo.svg" alt="" srcset="" /></a>
+          <a href="/" aria-label="Shortly">
+            <img
+              src="./images/logo.svg"
+              alt="Shortly"
+              width="1000"
+              height="1000"
+              srcset=""
+            />
+          </a>
         </div>
-
         <div class="navbar_link_cont navbar_mobile" id="navbar_links">
           <ul class="navbar_links_list navbar_list">
-            <!-- navbar links -->
             <li class="navbar_list_item">
-              <a href="#" class="navbar_link">Feature</a>
+              <a href="#" class="navbar_link" aria-label="Feature">Feature</a>
             </li>
             <li class="navbar_list_item">
-              <a href="#" class="navbar_link">Pricing</a>
+              <a href="#" class="navbar_link" aria-label="Pricing">Pricing</a>
             </li>
             <li class="navbar_list_item">
-              <a href="#" class="navbar_link">Resources</a>
+              <a href="#" class="navbar_link" aria-label="Resources"
+                >Resources</a
+              >
             </li>
-            <!-- navbar button -->
-            <div class="navbar_button_list">
+            <ul class="navbar_button_list">
               <li class="navbar_list_item">
-                <a href="#" class="navbar_link">Log in</a>
+                <a href="#" class="navbar_link" aria-label="Log in">Log in</a>
               </li>
               <li class="navbar_list_item navbar_button">
-                <a href="#" class="button nav_button">Sing up</a>
+                <a href="#" class="button nav_button" aria-label="Sign up"
+                  >Sing up</a
+                >
               </li>
-            </div>
+            </ul>
           </ul>
         </div>
-        <!-- bars for mobile menu -->
         <div class="hamburger_menu" id="bars">
-          <i class="fa-solid fa-bars fa-xl" id="bars"></i>
+          <i class="fa-solid fa-bars fa-xl" id="bar_icon"></i>
         </div>
       </nav>
       <div class="hero wrapper">
@@ -85,14 +82,18 @@
           <button class="button">Get Started</button>
         </div>
         <div class="hero_img">
-          <img src="./images/illustration-working.svg" alt="" srcset="" />
+          <img
+            src="./images/illustration-working.svg"
+            alt="Hero image"
+            width="1000"
+            height="1000"
+            srcset=""
+          />
         </div>
       </div>
     </header>
-    <!-- main  -->
     <main class="main">
       <div class="wrapper form_wrapper">
-        <!-- form -->
         <div class="main_form">
           <form action="" id="form">
             <input
@@ -105,14 +106,7 @@
           </form>
         </div>
       </div>
-      <div class="wrapper links_list" id="links_list">
-        <!-- ---------------------------- -->
-        <!--  shorten links goes here  -->
-        <!-- ---------------------------- -->
-      </div>
-      <!-- ---------------------- -->
-      <!-- Advance stats cards -->
-      <!-- ---------------------- -->
+      <div class="wrapper links_list" id="links_list"></div>
       <div class="advacnce_stats_section">
         <div class="wrapper advance_stats_wrapper">
           <div class="stats_description">
@@ -127,7 +121,12 @@
             <div class="stats_card">
               <div class="stats_card_icon">
                 <div class="icon">
-                  <img src="./images/icon-brand-recognition.svg" alt="" />
+                  <img
+                    src="./images/icon-brand-recognition.svg"
+                    width="40px"
+                    height="40px"
+                    alt="card icon 1"
+                  />
                 </div>
               </div>
               <h3 class="heading stats_card_heading">Brand recognition</h3>
@@ -140,10 +139,14 @@
             <div class="stats_card">
               <div class="stats_card_icon">
                 <div class="icon">
-                  <img src="./images/icon-detailed-records.svg" alt="" />
+                  <img
+                    src="./images/icon-detailed-records.svg"
+                    width="40px"
+                    height="40px"
+                    alt="card icon 2"
+                  />
                 </div>
               </div>
-
               <h3 class="heading stats_card_heading">Detailed Records</h3>
               <p class="paragraph stats_card_paragraph">
                 Gain insights into who is clicking your links. Knowing when and
@@ -154,7 +157,12 @@
             <div class="stats_card">
               <div class="stats_card_icon">
                 <div class="icon">
-                  <img src="./images/icon-fully-customizable.svg" alt="" />
+                  <img
+                    src="./images/icon-fully-customizable.svg"
+                    width="40px"
+                    height="40px"
+                    alt="card icon 3"
+                  />
                 </div>
               </div>
               <h3 class="heading stats_card_heading">Fully Customizable</h3>
@@ -167,55 +175,47 @@
         </div>
       </div>
     </main>
-    <!-- --------------------------------------- -->
-    <!--          boost you link taday           -->
-    <!-- --------------------------------------- -->
     <div class="boost_link_section">
       <div class="wrapper boost_list_wrapper">
         <h3 class="heading boost_link_heading">Boost your links today</h3>
         <button class="button boost_links_button">Get started</button>
       </div>
     </div>
-    <!-- ------------------------------------ -->
-    <!--             Footer                      -->
-    <!-- ------------------------------------ -->
     <footer class="footer_section section">
       <div class="footer_container wrapper">
         <div class="footer_logo_cont">
-          <h3 class="footer_logo heading">Shortly</h3>
-          <div class="footer_social_icon">
-            <i class="fa-brands fa-square-facebook fa-xl"></i>
-            <i class="fa-brands fa-square-twitter fa-xl"></i>
-            <i class="fa-brands fa-square-pinterest fa-xl"></i>
-            <i class="fa-brands fa-square-instagram fa-xl"></i>
-          </div>
+          <ul class="footer_icon_list">
+            <h3 class="footer_logo heading">Shortly</h3>
+            <li><i class="fa-brands fa-square-facebook fa-xl"></i></li>
+            <li><i class="fa-brands fa-square-twitter fa-xl"></i></li>
+            <li><i class="fa-brands fa-square-pinterest fa-xl"></i></li>
+            <li><i class="fa-brands fa-square-instagram fa-xl"></i></li>
+          </ul>
         </div>
         <div class="footer_links_cont">
-          <div>
+          <ul>
             <p class="footer_links_headings">Features</p>
             <li><a href="#">Link Shortening</a></li>
             <li><a href="#">Branded Links</a></li>
             <li><a href="#">Analytics</a></li>
-          </div>
+          </ul>
         </div>
-
         <div class="footer_links_cont">
-          <div>
+          <ul>
             <p class="footer_links_headings">Resources</p>
             <li><a href="#">Blog</a></li>
             <li><a href="#"> Developers</a></li>
             <li><a href="#">Support</a></li>
-          </div>
+          </ul>
         </div>
-
         <div class="footer_links_cont">
-          <div>
+          <ul>
             <p class="footer_links_headings">Company</p>
             <li><a href="#">About</a></li>
             <li><a href="#"> Our Team</a></li>
             <li><a href="#">Careers</a></li>
             <li><a href="#">Contact</a></li>
-          </div>
+          </ul>
         </div>
       </div>
     </footer>
