@@ -2,35 +2,51 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+
+    <!-- displays site properly based on user's device -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
       content="Frontend Mentor | Shortly URL shortening API Challenge"
     />
+    <!-- fav icon -->
     <link
       rel="icon"
       type="image/png"
       sizes="32x32"
       href="./images/favicon-32x32.png"
     />
+
+    <!-- fonts google-fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap"
       rel="stylesheet"
     />
+
+    <!-- icon font-Awesome -->
     <script
-      defer      
+      defer
       src="https://kit.fontawesome.com/38f8bca810.js"
       crossorigin="anonymous"
     ></script>
-    <script defer src="./script.js"></script>
+
+    <!-- script -->
+    <script defer type="module" src="./script.js"></script>
+
+    <!-- style CSS -->
     <link rel="stylesheet" href="./style.css" />
+
+    <!-- title -->
     <title>Frontend Mentor | Shortly URL shortening API Challenge</title>
   </head>
   <body>
+    <!-- Header -->
     <header class="header" id="header">
+      <!-- navbar -->
       <nav class="wrapper navbar">
+        <!-- logo -->
         <div class="navbar_logo">
           <a href="/" aria-label="Shortly">
             <img
@@ -38,12 +54,13 @@
               alt="Shortly"
               width="1000"
               height="1000"
-              srcset=""
             />
           </a>
         </div>
+
         <div class="navbar_link_cont navbar_mobile" id="navbar_links">
           <ul class="navbar_links_list navbar_list">
+            <!-- navbar links -->
             <li class="navbar_list_item">
               <a href="#" class="navbar_link" aria-label="Feature">Feature</a>
             </li>
@@ -55,6 +72,7 @@
                 >Resources</a
               >
             </li>
+            <!-- navbar button -->
             <ul class="navbar_button_list">
               <li class="navbar_list_item">
                 <a href="#" class="navbar_link" aria-label="Log in">Log in</a>
@@ -67,8 +85,9 @@
             </ul>
           </ul>
         </div>
-        <div class="hamburger_menu" id="bars">
-          <i class="fa-solid fa-bars fa-xl" id="bar_icon"></i>
+        <!-- bars for mobile menu -->
+        <div class="hamburger_menu" id="mobileMenu">
+          <i class="fa-solid fa-bars fa-xl" id="bars"></i>
         </div>
       </nav>
       <div class="hero wrapper">
@@ -92,8 +111,10 @@
         </div>
       </div>
     </header>
+    <!-- main  -->
     <main class="main">
       <div class="wrapper form_wrapper">
+        <!-- form -->
         <div class="main_form">
           <form action="" id="form">
             <input
@@ -106,7 +127,14 @@
           </form>
         </div>
       </div>
-      <div class="wrapper links_list" id="links_list"></div>
+      <div class="wrapper links_list" id="links_list">
+        <!-- ---------------------------- -->
+        <!--  shorten links goes here  -->
+        <!-- ---------------------------- -->
+      </div>
+      <!-- ---------------------- -->
+      <!-- Advance stats cards -->
+      <!-- ---------------------- -->
       <div class="advacnce_stats_section">
         <div class="wrapper advance_stats_wrapper">
           <div class="stats_description">
@@ -147,6 +175,7 @@
                   />
                 </div>
               </div>
+
               <h3 class="heading stats_card_heading">Detailed Records</h3>
               <p class="paragraph stats_card_paragraph">
                 Gain insights into who is clicking your links. Knowing when and
@@ -175,12 +204,18 @@
         </div>
       </div>
     </main>
+    <!-- --------------------------------------- -->
+    <!--          boost you link taday           -->
+    <!-- --------------------------------------- -->
     <div class="boost_link_section">
       <div class="wrapper boost_list_wrapper">
         <h3 class="heading boost_link_heading">Boost your links today</h3>
         <button class="button boost_links_button">Get started</button>
       </div>
     </div>
+    <!-- ------------------------------------ -->
+    <!--             Footer                      -->
+    <!-- ------------------------------------ -->
     <footer class="footer_section section">
       <div class="footer_container wrapper">
         <div class="footer_logo_cont">
@@ -200,6 +235,7 @@
             <li><a href="#">Analytics</a></li>
           </ul>
         </div>
+
         <div class="footer_links_cont">
           <ul>
             <p class="footer_links_headings">Resources</p>
@@ -208,6 +244,7 @@
             <li><a href="#">Support</a></li>
           </ul>
         </div>
+
         <div class="footer_links_cont">
           <ul>
             <p class="footer_links_headings">Company</p>
