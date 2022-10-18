@@ -4,24 +4,28 @@ const linkList = document.getElementById("links_list");
 const navbar = document.getElementById("navbar_links");
 const mobileMenu = document.getElementById("mobileMenu");
 
-// toggle navbar
-mobileMenu.addEventListener("click", () => {
+// function for open navbar
+const activeNavMenu = () => {
   navbar.classList.toggle("active");
   mobileMenu.querySelector(".fa-solid").classList.toggle("fa-xmark");
-});
+};
 
-// close navbar when click on links or out of the navbar box
-navbar.addEventListener("click", (e) => {
+// function for closing navbar
+const closeNavMenu = (e) => {
   let target = e.target;
   if (target.id === "navbar_links" || target.tagName === "A") {
     navbar.classList.remove("active");
-    mobileMenu.querySelector(".fa-solid").classList.toggle("fa-xmark");
+    mobileMenu.querySelector(".fa-solid").classList.remove("fa-xmark");
   }
-});
+};
+// handle navbar
+mobileMenu.addEventListener("click", activeNavMenu);
+navbar.addEventListener("click", closeNavMenu);
 
 // array for sotoring links
 const linksArr = [];
-// copy url
+
+// function for copy button
 const copyUrl = (e) => {
   let target = e.target;
   let shortLink =
@@ -41,72 +45,16 @@ const copyUrl = (e) => {
   }
 };
 
-// fetch api
-const genShortUrl = async (link) => {
-  const res = await fetch(`https://api.shrtco.de/v2/shorten?url=${link}`);
-  const result = await res.json();
-  return result;
-};
-
-// url validation using RegExp
-function isUrlvalid(url) {
-  if (!url) return false;
-  let pattern = new RegExp(
-    "^(https?:\\/\\/)?" + // protocol
-      "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" + // domain name
-      "((\\d{1,3}\\.){3}\\d{1,3}))|" + // OR ip (v4) address
-      "localhost" + // OR localhost
-      "(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*" + // port and path
-      "(\\?[;&a-z\\d%_.~+=-]*)?" + // query string
-      "(\\#[-a-z\\d_]*)?$",
-    "i"
-  ); // fragment locator
-  return pattern.test(url);
-}
-
-// function
-
-const submitLink = (e) => {
-  e.preventDefault();
-  const originalLink = form["link"].value;
-  // return alert if link is not valid
-  if (!isUrlvalid(originalLink)) {
-    form["link"].value = "";
-    return alert("enter valid link");
-  } else {
-    genShortUrl(originalLink).then(
-      (result) => {
-        if (!result.ok) {
-          return alert(result.error);
-        } else {
-          linksArr.unshift({
-            originalLink: result.result.original_link,
-            shortLink: result.result.short_link,
-            id: result.result.code,
-          });
-          return renderLinksList();
-        }
-      },
-      (err) => {
-        return alert(err);
-      }
-    );
-    form["link"].value = "";
-  }
-};
-
-// get link from user
-form.addEventListener("submit", submitLink);
-
+// render links item
 const renderLinksList = () => {
   linkList.innerHTML = "";
 
-  // show 5 links on the page
+  // show 5 links item on the page
   if (linksArr.length > 5) {
     linksArr.pop();
   }
 
-  // create url list
+  // create list item for each links item
   linksArr.forEach((url) => {
     let linksListItem = document.createElement("div");
     linksListItem.classList.add("link_item");
@@ -142,4 +90,58 @@ const renderLinksList = () => {
     linksListItem.appendChild(copyBtn);
     linkList.appendChild(linksListItem);
   });
+};
+
+// fetch api
+const fetchApi = async (link) => {
+  const res = await fetch(`https://api.shrtco.de/v2/shorten?url=${link}`);
+  const result = await res.json();
+  return result;
+};
+
+// url validation using RegExp
+function isUrlvalid(url) {
+  return new RegExp(
+    "^(https?:\\/\\/)?" + // protocol
+      "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" + // domain name
+      "((\\d{1,3}\\.){3}\\d{1,3}))|" + // OR ip (v4) address
+      "localhost" + // OR localhost
+      "(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*" + // port and path
+      "(\\?[;&a-z\\d%_.~+=-]*)?" + // query string
+      "(\\#[-a-z\\d_]*)?$",
+    "i"
+  ).test(url);
 }
+
+// get link from user and update on the link list
+const genrateShorteUrl = (e) => {
+  e.preventDefault();
+  const originalLink = form["link"].value;
+  // return alert if link is not valid
+  if (!isUrlvalid(originalLink)) {
+    form["link"].value = "";
+    return alert("enter valid link");
+  } else {
+    fetchApi(originalLink).then(
+      (result) => {
+        if (!result.ok) {
+          return alert(result.error);
+        } else {
+          linksArr.unshift({
+            originalLink: result.result.original_link,
+            shortLink: result.result.short_link,
+            id: result.result.code,
+          });
+          return renderLinksList();
+        }
+      },
+      (err) => {
+        return alert(err);
+      }
+    );
+    form["link"].value = "";
+  }
+};
+
+// get link from user
+form.addEventListener("submit", genrateShorteUrl);
