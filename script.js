@@ -4,25 +4,25 @@ const linkList = document.getElementById("links_list");
 const navbar = document.getElementById("navbar_links");
 const mobileMenu = document.getElementById("mobileMenu");
 
+
+// handle navbar
+
 // function for open navbar
-const activeNavMenu = () => {
+mobileMenu.addEventListener("click", () => {
   navbar.classList.toggle("active");
   mobileMenu.querySelector(".fa-solid").classList.toggle("fa-xmark");
-};
+});
 
 // function for closing navbar
-const closeNavMenu = (e) => {
+navbar.addEventListener("click", (e) => {
   let target = e.target;
   if (target.id === "navbar_links" || target.tagName === "A") {
     navbar.classList.remove("active");
     mobileMenu.querySelector(".fa-solid").classList.remove("fa-xmark");
   }
-};
-// handle navbar
-mobileMenu.addEventListener("click", activeNavMenu);
-navbar.addEventListener("click", closeNavMenu);
+});
 
-// array for sotoring links
+// array for links
 const linksArr = [];
 
 // function for copy button
@@ -49,7 +49,7 @@ const copyUrl = (e) => {
 const renderLinksList = () => {
   linkList.innerHTML = "";
 
-  // show 5 links item on the page
+  // only 5 links item on the page
   if (linksArr.length > 5) {
     linksArr.pop();
   }
@@ -59,7 +59,7 @@ const renderLinksList = () => {
     let linksListItem = document.createElement("div");
     linksListItem.classList.add("link_item");
 
-    // remove protocol(https://) and  subdomain(www.) from original link to reduce length
+    // remove protocol and  subdomain name from original link
     let ogLink = url.originalLink.replace(
       /http(s)?(:)?(\/\/)?|(\/\/)?(www\.)?/g,
       ""
@@ -143,5 +143,5 @@ const genrateShorteUrl = (e) => {
   }
 };
 
-// get link from user
+// get link from user and update links list
 form.addEventListener("submit", genrateShorteUrl);
