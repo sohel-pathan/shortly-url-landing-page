@@ -1,24 +1,23 @@
 // select elment
-const form = document.getElementById("form");
-const linkList = document.getElementById("links_list");
-const navbar = document.getElementById("navbar_links");
-const mobileMenu = document.getElementById("mobileMenu");
-
+const form = document.getElementById('form');
+const linkList = document.getElementById('links_list');
+const navbar = document.getElementById('navbar_links');
+const mobileMenu = document.getElementById('mobileMenu');
 
 // handle navbar
 
 // function for open navbar
-mobileMenu.addEventListener("click", () => {
-  navbar.classList.toggle("active");
-  mobileMenu.querySelector(".fa-solid").classList.toggle("fa-xmark");
+mobileMenu.addEventListener('click', () => {
+  navbar.classList.toggle('active');
+  mobileMenu.querySelector('.fa-solid').classList.toggle('fa-xmark');
 });
 
 // function for closing navbar
-navbar.addEventListener("click", (e) => {
+navbar.addEventListener('click', (e) => {
   let target = e.target;
-  if (target.id === "navbar_links" || target.tagName === "A") {
-    navbar.classList.remove("active");
-    mobileMenu.querySelector(".fa-solid").classList.remove("fa-xmark");
+  if (target.id === 'navbar_links' || target.tagName === 'A') {
+    navbar.classList.remove('active');
+    mobileMenu.querySelector('.fa-solid').classList.remove('fa-xmark');
   }
 });
 
@@ -29,17 +28,17 @@ const linksArr = [];
 const copyUrl = (e) => {
   let target = e.target;
   let shortLink =
-    target.parentElement.querySelector(".shorten_link").textContent;
+    target.parentElement.querySelector('.shorten_link').textContent;
   navigator.clipboard.writeText(shortLink);
   // when click on the copy button change color and text of copy button
   let clicked = false;
   if (!clicked) {
-    target.textContent = "Copied!";
-    target.style.backgroundColor = "#3b3054";
+    target.textContent = 'Copied!';
+    target.style.backgroundColor = '#3b3054';
     clicked = true;
     return setTimeout(() => {
-      target.textContent = "Copy";
-      target.style.backgroundColor = "#2acfcf";
+      target.textContent = 'Copy';
+      target.style.backgroundColor = '#2acfcf';
       clicked = false;
     }, 800);
   }
@@ -47,7 +46,7 @@ const copyUrl = (e) => {
 
 // render links item
 const renderLinksList = () => {
-  linkList.innerHTML = "";
+  linkList.innerHTML = '';
 
   // only 5 links item on the page
   if (linksArr.length > 5) {
@@ -56,32 +55,33 @@ const renderLinksList = () => {
 
   // create list item for each links item
   linksArr.forEach((url) => {
-    let linksListItem = document.createElement("div");
-    linksListItem.classList.add("link_item");
+    let linksListItem = document.createElement('div');
+    linksListItem.classList.add('link_item');
 
     // remove protocol and  subdomain name from original link
     let ogLink = url.originalLink.replace(
       /http(s)?(:)?(\/\/)?|(\/\/)?(www\.)?/g,
-      ""
+      ''
     );
 
     // original links
-    let urlPara = document.createElement("div");
-    urlPara.classList.add("original_link");
+    let urlPara = document.createElement('div');
+    urlPara.classList.add('original_link');
     urlPara.innerHTML = `<p>${
-      ogLink.length > 35 ? ogLink.substring(35, 0) + "..." : ogLink
+      // oglink contain only 35 character for adjusting width
+      ogLink.length > 35 ? ogLink.substring(35, 0) + '...' : ogLink
     }</p>`;
 
     // short link
-    let shortUrlPara = document.createElement("div");
+    let shortUrlPara = document.createElement('div');
     shortUrlPara.innerHTML = `<p> ${url.shortLink} </p>`;
-    shortUrlPara.classList.add("shorten_link");
+    shortUrlPara.classList.add('shorten_link');
 
     // copy button for link
-    let copyBtn = document.createElement("button");
-    copyBtn.classList.add("copy_button");
-    copyBtn.classList.add("button");
-    copyBtn.textContent = "Copy";
+    let copyBtn = document.createElement('button');
+    copyBtn.classList.add('copy_button');
+    copyBtn.classList.add('button');
+    copyBtn.textContent = 'Copy';
     copyBtn.onclick = copyUrl;
 
     // Append elements to the list
@@ -101,26 +101,27 @@ const fetchApi = async (link) => {
 
 // url validation using RegExp
 function isUrlvalid(url) {
-  return new RegExp(
-    "^(https?:\\/\\/)?" + // protocol
-      "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" + // domain name
-      "((\\d{1,3}\\.){3}\\d{1,3}))|" + // OR ip (v4) address
-      "localhost" + // OR localhost
-      "(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*" + // port and path
-      "(\\?[;&a-z\\d%_.~+=-]*)?" + // query string
-      "(\\#[-a-z\\d_]*)?$",
-    "i"
-  ).test(url);
+  let urlRegeExp = new RegExp(
+    '^(https?:\\/\\/)?' + // protocol
+      '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
+      '((\\d{1,3}\\.){3}\\d{1,3}))|' + // OR ip (v4) address
+      'localhost' + // OR localhost
+      '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
+      '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
+      '(\\#[-a-z\\d_]*)?$',
+    'i'
+  );
+  return urlRegeExp.test(url);
 }
 
 // get link from user and update on the link list
 const genrateShorteUrl = (e) => {
   e.preventDefault();
-  const originalLink = form["link"].value;
+  const originalLink = form['link'].value;
   // return alert if link is not valid
   if (!isUrlvalid(originalLink)) {
-    form["link"].value = "";
-    return alert("enter valid link");
+    form['link'].value = '';
+    return alert('enter valid link');
   } else {
     fetchApi(originalLink).then(
       (result) => {
@@ -139,9 +140,9 @@ const genrateShorteUrl = (e) => {
         return alert(err);
       }
     );
-    form["link"].value = "";
+    form['link'].value = '';
   }
 };
 
 // get link from user and update links list
-form.addEventListener("submit", genrateShorteUrl);
+form.addEventListener('submit', genrateShorteUrl);
