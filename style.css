@@ -62,7 +62,7 @@ a {
 .wrapper {
   max-width: 1200px;
   margin: 0 auto;
-  padding-inline: 20px;
+  padding-inline: 10px;
 }
 .button {
   background-color: var(--Cyan);
@@ -159,7 +159,7 @@ a {
     left: 0;
     bottom: 0;
     padding-top: 65px;
-    padding-inline: 15px;
+    padding-inline: 10px;
     animation: mobileAnim;
     animation-duration: 0.25s;
     transition: all, 0.25s;
@@ -179,7 +179,7 @@ a {
     flex-direction: column;
     background-color: var(--DarkViolet);
     width: 100%;
-    border-radius: 15px;
+    border-radius: 5px;
     padding: 30px;
     z-index: 9999999;
   }
@@ -293,10 +293,10 @@ a {
 .form_wrapper {
   position: absolute;
   top: -55px;
-  right: 20px;
-  left: 20px;
+  right: 10px;
+  left: 10px;
   height: 110px;
-  max-width: 1160px;
+  max-width: 1180px;
   display: flex;
   align-items: center;
   background-color: var(--VeryDarkBlue);
@@ -305,6 +305,7 @@ a {
   background-size: cover;
   background-repeat: no-repeat;
   border-radius: 5px;
+  padding-inline: 10px;
 }
 .main_form {
   width: 100%;
@@ -479,7 +480,7 @@ a {
 .stats_card_container::after {
   height: 7px;
   background-color: var(--Cyan);
-  content: "";
+  content: '';
   display: block;
   position: absolute;
   width: 100%;
@@ -509,7 +510,7 @@ a {
   .stats_card:nth-last-child(1)::before {
     height: 70px;
     background-color: var(--Cyan);
-    content: "";
+    content: '';
     display: block;
     position: absolute;
     width: 7px;
@@ -527,7 +528,7 @@ a {
   .stats_card_container::after {
     height: 100%;
     background-color: var(--Cyan);
-    content: "";
+    content: '';
     display: block;
     position: absolute;
     width: 7px;
