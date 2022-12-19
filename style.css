@@ -647,7 +647,10 @@ a {
     align-items: flex-start;
   }
 }
-@media (max-width: 384px) {
+@media (max-width: 400px) {
+  .footer_container {
+    grid-template-columns: 1fr;
+  }
   .footer_logo_cont {
     text-align: center;
   }
