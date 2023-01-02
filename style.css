@@ -495,7 +495,7 @@ a {
     padding-bottom: 150px;
   }
 }
-@media (max-width: 959px) {
+@media (max-width: 939px) {
   .stats_card_container::after {
     width: 100%;
     top: 20%;
@@ -602,7 +602,7 @@ a {
   font-size: 3rem;
   color: var(--White);
   cursor: pointer;
-  padding-bottom: 30px;
+  padding-bottom: 20px;
 }
 .footer_icon_list li {
   display: inline-block;
@@ -612,14 +612,13 @@ a {
   margin-right: 10px;
   cursor: pointer;
 }
+
 .footer_icon_list li i:hover {
   transition: all, 0.25s;
   color: var(--Cyan);
 }
 .footer_links_cont {
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
 }
 .footer_links_headings {
   font-weight: 500;
@@ -642,11 +641,7 @@ a {
   color: var(--White);
   text-decoration: underline;
 }
-@media (max-width: 734px) {
-  .footer_links_cont {
-    align-items: flex-start;
-  }
-}
+
 @media (max-width: 400px) {
   .footer_container {
     grid-template-columns: 1fr;
@@ -655,7 +650,7 @@ a {
     text-align: center;
   }
   .footer_links_cont {
-    align-items: center;
+    justify-content: center;
   }
   .footer_links_cont > ul {
     text-align: center;
