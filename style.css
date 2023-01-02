@@ -259,9 +259,6 @@ a {
   .hero_img {
     width: 750px;
   }
-  .navbar {
-    margin-bottom: 0;
-  }
   .hero {
     flex-direction: column-reverse;
     padding-bottom: 120px;
