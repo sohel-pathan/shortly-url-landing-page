@@ -93,10 +93,30 @@ const renderLinksList = () => {
 };
 
 // fetch api
-const fetchApi = async (link) => {
-  const res = await fetch(`https://api.shrtco.de/v2/shorten?url=${link}`);
-  const result = await res.json();
-  return result;
+const fetchApi = (originalLink) => {
+  // fetch api
+  const fetchPromise = fetch(
+    `https://api.shrtco.de/v2/shorten?url=${originalLink}`
+  );
+
+  fetchPromise
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      if (!data.ok) {
+        throw new Error(data.error);
+      }
+      linksArr.unshift({
+        originalLink: data.result.original_link,
+        shortLink: data.result.short_link,
+        id: data.result.code,
+      });
+      return renderLinksList();
+    })
+    .catch((error) => {
+      alert(error);
+    });
 };
 
 // url validation using RegExp
@@ -118,28 +138,13 @@ function isUrlvalid(url) {
 const genrateShorteUrl = (e) => {
   e.preventDefault();
   const originalLink = form['link'].value;
+
   // return alert if link is not valid
   if (!isUrlvalid(originalLink)) {
     form['link'].value = '';
     return alert('enter valid link');
   } else {
-    fetchApi(originalLink).then(
-      (result) => {
-        if (!result.ok) {
-          return alert(result.error);
-        } else {
-          linksArr.unshift({
-            originalLink: result.result.original_link,
-            shortLink: result.result.short_link,
-            id: result.result.code,
-          });
-          return renderLinksList();
-        }
-      },
-      (err) => {
-        return alert(err);
-      }
-    );
+    fetchApi(originalLink);
     form['link'].value = '';
   }
 };
