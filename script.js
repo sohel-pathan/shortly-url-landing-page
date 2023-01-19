@@ -3,6 +3,8 @@ const form = document.getElementById('form');
 const linkList = document.getElementById('links_list');
 const navbar = document.getElementById('navbar_links');
 const mobileMenu = document.getElementById('mobileMenu');
+// empty array for storing links data
+const linksArr = [];
 
 // handle navbar
 
@@ -21,16 +23,16 @@ navbar.addEventListener('click', (e) => {
   }
 });
 
-// array for links
-const linksArr = [];
-
-// function for copy button
+// function to copy url
 const copyUrl = (e) => {
   let target = e.target;
+  // store link in shortLink array
   let shortLink =
     target.parentElement.querySelector('.shorten_link').textContent;
+  // copy shortLInk to clipboar
   navigator.clipboard.writeText(shortLink);
-  // when click on the copy button change color and text of copy button
+
+  // change backgrouuond-color and inner_text of copy-button when button clicked
   let clicked = false;
   if (!clicked) {
     target.textContent = 'Copied!';
@@ -44,11 +46,11 @@ const copyUrl = (e) => {
   }
 };
 
-// render links item
+// render links item.
 const renderLinksList = () => {
   linkList.innerHTML = '';
 
-  // only 5 links item on the page
+  // manage how much links are shown on page
   if (linksArr.length > 5) {
     linksArr.pop();
   }
@@ -68,7 +70,7 @@ const renderLinksList = () => {
     let urlPara = document.createElement('div');
     urlPara.classList.add('original_link');
     urlPara.innerHTML = `<p>${
-      // oglink contain only 35 character for adjusting width
+      // original_link contain max 35 word for adjusting width
       ogLink.length > 35 ? ogLink.substring(35, 0) + '...' : ogLink
     }</p>`;
 
@@ -92,7 +94,7 @@ const renderLinksList = () => {
   });
 };
 
-// fetch api
+// function for fetch-api
 const fetchApi = (originalLink) => {
   // fetch api
   const fetchPromise = fetch(
@@ -104,14 +106,17 @@ const fetchApi = (originalLink) => {
       return response.json();
     })
     .then((data) => {
+      // if response false throw error
       if (!data.ok) {
         throw new Error(data.error);
       }
+      // add data object in linksArr
       linksArr.unshift({
         originalLink: data.result.original_link,
         shortLink: data.result.short_link,
         id: data.result.code,
       });
+      // render links on page
       return renderLinksList();
     })
     .catch((error) => {
@@ -137,16 +142,16 @@ function isUrlvalid(url) {
 // get link from user and update on the link list
 const genrateShorteUrl = (e) => {
   e.preventDefault();
+  // store input value
   const originalLink = form['link'].value;
 
-  // return alert if link is not valid
+  // check url is valid using RegExp before fetching
   if (!isUrlvalid(originalLink)) {
-    form['link'].value = '';
     return alert('enter valid link');
-  } else {
-    fetchApi(originalLink);
-    form['link'].value = '';
   }
+  // fetch-url
+  fetchApi(originalLink);
+  form['link'].value = '';
 };
 
 // get link from user and update links list
